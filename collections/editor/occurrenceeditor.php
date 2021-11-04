@@ -1132,7 +1132,7 @@ else{
 												$georefExtraDiv .= "block";
 											}
 											?>
-											<div id="georefExtraDiv" >
+											<div id="georefExtraDiv" style="display:block;">
 												<div>
 													<div id="georeferencedByDiv">
 														<?php echo (defined('GEOREFERENCEDBYLABEL')?GEOREFERENCEDBYLABEL:'Georeferenced By'); ?>
