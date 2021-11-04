@@ -1111,7 +1111,7 @@ else{
 											</div>
 											-->
 											<?php
-											/* include_once('includes/geotools.php');
+											include_once('includes/geotools.php');
 											$georefExtraDiv = 'display:';
 											if(array_key_exists("georeferencedby",$occArr) && $occArr["georeferencedby"]){
 												$georefExtraDiv .= "block";
@@ -1131,9 +1131,9 @@ else{
 											elseif(array_key_exists("georeferenceremarks",$occArr) && $occArr["georeferenceremarks"]){
 												$georefExtraDiv .= "block";
 											}
-											*/
 											?>
 											<div id="georefExtraDiv" >
+												<?php $georefExtraDiv = 'display'; ?>
 												<div>
 													<div id="georeferencedByDiv">
 														<?php echo (defined('GEOREFERENCEDBYLABEL')?GEOREFERENCEDBYLABEL:'Georeferenced By'); ?>
