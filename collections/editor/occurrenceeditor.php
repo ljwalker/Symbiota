@@ -1105,11 +1105,6 @@ else{
 														<input type="text" name="verbatimdepth" tabindex="65" maxlength="255" value="<?php echo array_key_exists('verbatimdepth',$occArr)?$occArr['verbatimdepth']:''; ?>" onchange="fieldChanged('verbatimdepth');" />
 													</div>
 												</div>
-											<!--	<div id="georefExtraToggleDiv" onclick="toggle('georefExtraDiv');">
-													<img class="editimg" src="../../images/editplus.png" />
-												</div>
-											</div>
-											-->
 											<?php
 											include_once('includes/geotools.php');
 											$georefExtraDiv = 'display:';
@@ -1133,7 +1128,6 @@ else{
 											}
 											?>
 											<div id="georefExtraDiv" >
-												<?php $georefExtraDiv = 'display'; ?>
 												<div>
 													<div id="georeferencedByDiv">
 														<?php echo (defined('GEOREFERENCEDBYLABEL')?GEOREFERENCEDBYLABEL:'Georeferenced By'); ?>
