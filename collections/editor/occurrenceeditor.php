@@ -1108,8 +1108,8 @@ else{
 											<!--	<div id="georefExtraToggleDiv" onclick="toggle('georefExtraDiv');">
 													<img class="editimg" src="../../images/editplus.png" />
 												</div>
-											</div>
 											-->
+											</div>
 											<?php
 											include_once('includes/geotools.php');
 											$georefExtraDiv = 'display:';
