@@ -1019,7 +1019,7 @@ $traitArr = $indManager->getTraitArr();
 									$refPath .= $_SERVER['SERVER_NAME'].$CLIENT_ROOT.'/collections/individual/index.php?occid='.$occArr['occid'];
 									$emailBody = (isset($LANG['SPECREFERENCED'])?$LANG['SPECREFERENCED']:'Specimen being referenced').': '.$refPath;
 									$emailRef = 'subject='.$emailSubject.'&cc='.$ADMIN_EMAIL.'&body='.$emailBody;
-									echo ' (<u><a href="mailto:'.$collMetadata['email'].'?'.$emailRef.'">'.$collMetadata['email'].'</a></u>)';
+									echo ' (<p style="color:blue;"><u><a href="mailto:'.$collMetadata['email'].'?'.$emailRef.'">'.$collMetadata['email'].'</a></u></p>)';
 								}
 							}
 							?>
@@ -1033,12 +1033,12 @@ $traitArr = $indManager->getTraitArr();
 									echo (isset($LANG['SEEERROR'])?$LANG['SEEERROR']:'Do you see an error? If so, errors can be fixed using the').' ';
 									?>
 									<a href="../editor/occurrenceeditor.php?occid=<?php echo $occArr['occid'];?>">
-										<?php echo '<u>'.(isset($LANG['OCCEDITOR'])?$LANG['OCCEDITOR']:'Occurrence Editor').'</u>'; ?>.
+										<?php echo '<p style="color:blue;"><u>'.(isset($LANG['OCCEDITOR'])?$LANG['OCCEDITOR']:'Occurrence Editor').'</u></p>'; ?>.
 									</a>
 									<?php
 								}
 								else{
-									echo (isset($LANG['SEEANERROR'])?$LANG['SEEANERROR']:'See an error?'); ?> <a href="../../profile/index.php?refurl=../collections/individual/index.php?occid=<?php echo $occid; ?>"><?php echo '<u>'.(isset($LANG['LOGIN'])?$LANG['LOGIN']:'Log In').'</u>'; ?></a> <?php echo (isset($LANG['TOEDITDATA'])?$LANG['TOEDITDATA']:'to edit data');
+									echo (isset($LANG['SEEANERROR'])?$LANG['SEEANERROR']:'See an error?'); ?> <a href="../../profile/index.php?refurl=../collections/individual/index.php?occid=<?php echo $occid; ?>"><?php echo '<p style="color:blue;"><u>'.(isset($LANG['LOGIN'])?$LANG['LOGIN']:'Log In').'</u></p>'; ?></a> <?php echo (isset($LANG['TOEDITDATA'])?$LANG['TOEDITDATA']:'to edit data');
 								}
 								?>
 							</div>
