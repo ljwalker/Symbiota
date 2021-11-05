@@ -1011,7 +1011,7 @@ $traitArr = $indManager->getTraitArr();
 						<div style="margin-top:10px;clear:both;">
 							<?php
 							if($collMetadata['contact']){
-								echo (isset($LANG['ADDITIONALINFO'])?$LANG['ADDITIONALINFO']:'For additional information about this specimen, please contact').':'.$collMetadata['contact'];
+								echo (isset($LANG['ADDITIONALINFO'])?$LANG['ADDITIONALINFO']:'For additional information about this specimen, please contact').': '.$collMetadata['contact'];
 								if($collMetadata['email']){
 									$emailSubject = $DEFAULT_TITLE.' occurrence: '.$occArr['catalognumber'].' ('.$occArr['othercatalognumbers'].')';
 									$refPath = 'http://';
@@ -1019,7 +1019,7 @@ $traitArr = $indManager->getTraitArr();
 									$refPath .= $_SERVER['SERVER_NAME'].$CLIENT_ROOT.'/collections/individual/index.php?occid='.$occArr['occid'];
 									$emailBody = (isset($LANG['SPECREFERENCED'])?$LANG['SPECREFERENCED']:'Specimen being referenced').': '.$refPath;
 									$emailRef = 'subject='.$emailSubject.'&cc='.$ADMIN_EMAIL.'&body='.$emailBody;
-									echo ' (<a href="mailto:'.$collMetadata['email'].'?'.$emailRef.'">'.$collMetadata['email'].'</a>)';
+									echo ' (<u><a href="mailto:'.$collMetadata['email'].'?'.$emailRef.'">'.$collMetadata['email'].'</a></u>)';
 								}
 							}
 							?>
