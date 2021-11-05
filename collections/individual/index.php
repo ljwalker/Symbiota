@@ -1033,12 +1033,12 @@ $traitArr = $indManager->getTraitArr();
 									echo (isset($LANG['SEEERROR'])?$LANG['SEEERROR']:'Do you see an error? If so, errors can be fixed using the').' ';
 									?>
 									<a href="../editor/occurrenceeditor.php?occid=<?php echo $occArr['occid'];?>">
-										<?php echo '<div style="color:blue;"><u>'.(isset($LANG['OCCEDITOR'])?$LANG['OCCEDITOR']:'Occurrence Editor').'</u></div>'; ?>.
+										<?php echo '<hr style="color:blue;"><u>'.(isset($LANG['OCCEDITOR'])?$LANG['OCCEDITOR']:'Occurrence Editor').'</u></hr>'; ?>.
 									</a>
 									<?php
 								}
 								else{
-									echo (isset($LANG['SEEANERROR'])?$LANG['SEEANERROR']:'See an error?'); ?> <a href="../../profile/index.php?refurl=../collections/individual/index.php?occid=<?php echo $occid; ?>"><?php echo '<div style="color:blue;"><u>'.(isset($LANG['LOGIN'])?$LANG['LOGIN']:'Log In').'</u></div>'; ?></a> <?php echo (isset($LANG['TOEDITDATA'])?$LANG['TOEDITDATA']:'to edit data');
+									echo (isset($LANG['SEEANERROR'])?$LANG['SEEANERROR']:'See an error?'); ?> <a href="../../profile/index.php?refurl=../collections/individual/index.php?occid=<?php echo $occid; ?>"><?php echo '<hr style="color:blue;"><u>'.(isset($LANG['LOGIN'])?$LANG['LOGIN']:'Log In').'</u></hr>'; ?></a> <?php echo (isset($LANG['TOEDITDATA'])?$LANG['TOEDITDATA']:'to edit data');
 								}
 								?>
 							</div>
