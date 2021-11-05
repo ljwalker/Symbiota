@@ -1033,7 +1033,7 @@ $traitArr = $indManager->getTraitArr();
 									echo (isset($LANG['SEEERROR'])?$LANG['SEEERROR']:'Do you see an error? If so, errors can be fixed using the').' ';
 									?>
 									<a href="../editor/occurrenceeditor.php?occid=<?php echo $occArr['occid'];?>">
-										<?php echo (isset($LANG['OCCEDITOR'])?$LANG['OCCEDITOR']:'Occurrence Editor'); ?>.
+										<?php echo '<u>'.(isset($LANG['OCCEDITOR'])?$LANG['OCCEDITOR']:'Occurrence Editor').'</u>'; ?>.
 									</a>
 									<?php
 								}
