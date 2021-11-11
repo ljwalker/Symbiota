@@ -305,7 +305,6 @@ class SpecProcessorManager {
 		$retArr['unprocnoimg'] = $this->getUnprocSpecNoImage();
 		$retArr['noskel'] = $this->getSpecNoSkel();
 		$retArr['unprocwithdata'] = $this->getUnprocWithData();
-		$retArr['targettaxa'] = $this->getTargetTaxaCount();
 		return $retArr;
 	}
 
@@ -426,21 +425,6 @@ class SpecProcessorManager {
 		if($this->collid){
 			$sql = 'SELECT count(*) AS cnt FROM omoccurrences '.
 				'WHERE (processingstatus = "unprocessed") AND (stateProvince IS NOT NULL) AND (locality IS NOT NULL) AND (collid = '.$this->collid.')';
-			//echo $sql;
-			$rs = $this->conn->query($sql);
-			while($r = $rs->fetch_object()){
-				$cnt = $r->cnt;
-			}
-			$rs->free();
-		}
-		return $cnt;
-	}
-	
-	private function getTargetTaxaCount(){
-		$cnt = 0;
-		if($this->collid){
-			$sql = 'SELECT count(*) AS cnt FROM omoccurrences '.
-				'WHERE genus IN ("Bombus","Peponapis","Xenoglossa","Xylocopa","Osmia","Afroheriades","Ashmeadiella","Atoposmia","Chelostoma","Haetosmia","Heriades","Hofferia","Hoplitis","Hoplosmia","Noteriades","Ochreriades","Othinosmia","Protosmia","Pseudoheriades","Stenoheriades","Stenosmia","Wainia","Xeroheriades","Megachile","","Dasypoda","Samba","Capicola","Eremaphanta","Hesperapis","Ceratomonia","Meganomia","Pseudophilanthus","Uromonia","Afrodasypoda","Macropis","Promelitta","Melitta","Rediviva","Redivivoides","Andrena","Colletes") AND (collid = '.$this->collid.')';
 			//echo $sql;
 			$rs = $this->conn->query($sql);
 			while($r = $rs->fetch_object()){

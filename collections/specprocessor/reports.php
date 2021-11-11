@@ -57,12 +57,6 @@ if($IS_ADMIN || (array_key_exists("CollAdmin",$USER_RIGHTS) && in_array($collid,
 						?>
 					</div>
 					<div style="margin:5px;">
-						<b>Specimens of Big Bee Target Taxa:</b>
-						<?php
-						echo $statsArr['targettaxa'];
-						?>
-					</div>
-					<div style="margin:5px;">
 						<b>Specimens without linked images:</b>
 						<?php
 						echo $statsArr['noimg'];
