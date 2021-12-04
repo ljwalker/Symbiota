@@ -2,6 +2,8 @@
 include_once('../config/symbini.php');
 include_once($SERVER_ROOT.'/classes/TaxonProfile.php');
 include_once($SERVER_ROOT.'/classes/TraitPolarPlot.php');
+include_once($SERVER_ROOT.'/classes/TraitBarPlot.php');
+include_once($SERVER_ROOT.'/classes/TraitLinePlot.php');
 
 
 class TraitPlotManager extends TaxonProfile {
@@ -27,15 +29,15 @@ class TraitPlotManager extends TaxonProfile {
 			case "polar":
 				$this->plotInstance = new PolarPlot();
 				break;
-			// case "bar":
-			//	$this->plotInstance = new BarPlot();
-			//	break;
+			case "bar":
+				$this->plotInstance = new BarPlot();
+				break;
 			// case "box":
 			// 	$this->plotInstance = new BoxPlot();
 			// 	break;
-			// case "line":
-			// 	$this->plotInstance = new LinePlot();
-			// 	break;
+			case "line":
+				$this->plotInstance = new LinePlot();
+				break;
 			// case "point":
 			// 	$this->plotInstance = new PointPlot();
 			// 	break;
@@ -97,15 +99,18 @@ class TraitPlotManager extends TaxonProfile {
 		return $this->plotInstance->getPlotHeight();
 	}
 
-	public function monthlyPolarPlot() {
+	public function getNumberOfSpecimens() {
+		return $this->plotInstance->getNumDataValues();
+	}
+
+	public function calendarPlot() {
 		if($this->rankId > 180) {  // limit to below genus
 			$this->plotInstance->setAxisNumber(12);
-			$this->plotInstance->setAxisRotation(15);
-			$this->plotInstance->setTickNumber(3);
+			$this->plotInstance->setAxisRotation(0);
+			$this->plotInstance->setTickNumber(10); //3
 			$this->plotInstance->setAxisLabels(array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'));
 			$this->plotInstance->setDataValues($this->summarizeTraitByMonth());
 			$this->setPlotCaption();
-			return $this->plotInstance->display();
 		}
 	}
 
@@ -165,7 +170,7 @@ class TraitPlotManager extends TaxonProfile {
 		if(!$timeStr) { $timeStr = date(DATE_RFC2822); }
 	 	$numStr = 'specimens';
 	 	if($num == 1) { $numStr = 'specimen'; }
-	 	$this->plotCaption = "Frequency of " . $this->traitName . ' - ' . $this->getStateName() . ", by " . $this->summarizedByType . ", for " . $num . " herbarium " . $numStr . " of <i>" . $this->acceptedArr[$this->tid]['sciname'] . "</i> " . $this->acceptedArr[$this->tid]['author'] . " from the ".$DEFAULT_TITLE." Symbiota portal sampled on " . $timeStr . ".";
+	 	$this->plotCaption = "Frequency of " . $this->traitName . ' - ' . $this->getStateName() . ", by " . $this->summarizedByType . ", for " . $num . " herbarium " . $numStr . " of <i>" . $this->acceptedArr[$this->tid]['sciname'] . "</i> " . $this->acceptedArr[$this->tid]['author'] . " from the ".$DEFAULT_TITLE." (http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]) sampled on " . $timeStr . ".";
 		// . " (including the lower taxa or synonyms: " . implode($this->taxonArr['synonymNames']) . ") ;
 	}
 

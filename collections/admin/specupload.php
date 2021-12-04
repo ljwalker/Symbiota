@@ -888,8 +888,8 @@ if($isEditor && $collid){
 								<?php echo '* '.(isset($LANG['SKIPPED'])?$LANG['SKIPPED']:'Record will be skipped when all of the following fields are empty: catalogNumber, otherCatalogNumbers, occurrenceID, recordedBy (collector), eventDate, scientificName, dbpk'); ?><br/>
 								<?php echo '* '.(isset($LANG['LEARN_MORE'])?$LANG['LEARN_MORE']:'To learn more about mapping to Symbiota fields (and Darwin Core)'); ?>:
 								<div style="margin-left:15px;">
-									<a href="http://symbiota.org/docs/wp-content/uploads/SymbiotaOccurrenceFields.pdf" target="_blank">SymbiotaOccurrenceFields.pdf</a><br/>
-									<a href="http://symbiota.org/docs/symbiota-introduction/loading-specimen-data/" target="_blank"><?php echo (isset($LANG['LOADING_DATA'])?$LANG['LOADING_DATA']:'Loading Data into Symbiota'); ?></a>
+									<a href="https://symbiota.org/wp-content/uploads/SymbiotaOccurrenceFields.pdf" target="_blank">SymbiotaOccurrenceFields.pdf</a><br/>
+									<a href="https://symbiota.org/symbiota-introduction/loading-specimen-data/" target="_blank"><?php echo (isset($LANG['LOADING_DATA'])?$LANG['LOADING_DATA']:'Loading Data into Symbiota'); ?></a>
 								</div>
 							</div>
 							<div style="margin:10px;">
@@ -968,14 +968,13 @@ if($isEditor && $collid){
 							</div>
 							<?php
 							if($uploadType == $SKELETAL){
-								echo '<div style="margin:15px;background-color:lightgreen;">';
+								echo '<div style="margin-top:15px;">';
 								echo (isset($LANG['SKEL_EXPLAIN'])?$LANG['SKEL_EXPLAIN']:'');
 								echo '<ul>';
 								echo '<li>'.(isset($LANG['SKEL_EXPLAIN_P1'])?$LANG['SKEL_EXPLAIN_P1']:'').'</li>';
 								echo '<li>'.(isset($LANG['SKEL_EXPLAIN_P2'])?$LANG['SKEL_EXPLAIN_P2']:'').'</li>';
-								echo '<li>'.(isset($LANG['SKEL_EXPLAIN_P2'])?$LANG['SKEL_EXPLAIN_P2']:'').'</li>';
-								echo '<li>'.(isset($LANG['SKEL_EXPLAIN_P2'])?$LANG['SKEL_EXPLAIN_P2']:'').'</li>';
-								echo '<li>'.(isset($LANG['SKEL_EXPLAIN_P2'])?$LANG['SKEL_EXPLAIN_P2']:'').'</li>';
+								echo '<li>'.(isset($LANG['SKEL_EXPLAIN_P3'])?$LANG['SKEL_EXPLAIN_P3']:'').'</li>';
+								echo '<li>'.(isset($LANG['SKEL_EXPLAIN_P4'])?$LANG['SKEL_EXPLAIN_P4']:'').'</li>';
 								echo '</ul>';
 								echo '</div>';
 							}
