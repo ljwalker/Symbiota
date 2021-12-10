@@ -19,21 +19,21 @@ if($IS_ADMIN || array_key_exists('CollAdmin',$USER_RIGHTS)) $isEditor = true;
 
 $statusStr = '';
 if($isEditor && $submitAction) {
-	if($submitAction == 'submitGeoEdits'){
-		$status = $taxLinkManager->editGeoUnit($_POST);
+	if($submitAction == 'submitTaxaLinkEdits'){
+		$status = $taxLinkManager->editTaxaLink($_POST);
 		if(!$status) $statusStr = $taxLinkManager->getErrorMessage();
 	}
-	elseif($submitAction == 'deleteGeoUnits'){
-		$status = $taxLinkManager->deleteGeoUnit($_POST['delGeoThesID']);
+	elseif($submitAction == 'deleteTaxaLink'){
+		$status = $taxLinkManager->deleteTaxaLink($_POST['delTaxaLinkID']);
 		if(!$status) $statusStr = $taxLinkManager->getErrorMessage();
 	}
-		elseif($submitAction == 'addGeoUnit'){
-		$status = $taxLinkManager->addGeoUnit($_POST);
+		elseif($submitAction == 'addTaxaLink'){
+		$status = $taxLinkManager->addTaxaLink($_POST);
 		if(!$status) $statusStr = $taxLinkManager->getErrorMessage();
 	}
 }
 
-$geoArr = $taxLinkManager->getGeograpicList($parentID);
+$linkArr = $taxLinkManager->getLinkArr($tid);
 
 ?>
 <html>

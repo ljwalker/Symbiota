@@ -498,22 +498,7 @@ class TaxonProfile extends Manager {
 		return $this->linkArr;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public function editTaxaLinks($postArr){
+	public function editTaxaLink($postArr){
 		if(is_numeric($postArr['tlid'])){
 			if(!$postArr['url']){
 				$this->errorMessage = 'ERROR editing link: URL must have a value';
@@ -534,41 +519,37 @@ class TaxonProfile extends Manager {
 		return true;
 	}
 
-	public function addGeoUnit($postArr){
-		if(!$postArr['geoTerm']){
-			$this->errorMessage = 'ERROR adding geoUnit: geographic term must have a value';
+	public function addTaxaLink($postArr){
+		if(!$postArr['url']){
+			$this->errorMessage = 'ERROR adding link: URL must have a value';
 			return false;
 		}
 		else{
-			$sql = 'INSERT INTO geographicthesaurus(geoterm, abbreviation, iso2, iso3, numcode, geoLevel, acceptedID, parentID, notes) '.
-				'VALUES("'.$this->cleanInStr($postArr['geoTerm']).'", '.
-				($postArr['abbreviation']?'"'.$this->cleanInStr($postArr['abbreviation']).'"':'NULL').', '.
-				($postArr['iso2']?'"'.$this->cleanInStr($postArr['iso2']).'"':'NULL').', '.
-				($postArr['iso3']?'"'.$this->cleanInStr($postArr['iso3']).'"':'NULL').', '.
-				(is_numeric($postArr['numCode'])?'"'.$this->cleanInStr($postArr['numCode']).'"':'NULL').', '.
-				(is_numeric($postArr['geoLevel'])?$this->cleanInStr($postArr['geoLevel']):'NULL').', '.
-				(is_numeric($postArr['acceptedID'])?'"'.$this->cleanInStr($postArr['acceptedID']).'"':'NULL').', '.
-				(is_numeric($postArr['parentID'])?'"'.$this->cleanInStr($postArr['parentID']).'"':'NULL').', '.
-				($postArr['notes']?'"'.$this->cleanInStr($postArr['notes']).'"':'NULL').')';
+			$sql = 'INSERT INTO taxalinks(tid, url, title, sourceIdentifier, owner) '.
+				'VALUES("'.$this->is_numeric($postArr['tid']).'", '.
+				($postArr['url']?'"'.$this->cleanInStr($postArr['url']).'"':'NULL').', '.
+				($postArr['title']?'"'.$this->cleanInStr($postArr['title']).'"':'NULL').', '.
+				($postArr['sourceIdentifier']?'"'.$this->cleanInStr($postArr['sourceIdentifier']).'"':'NULL').', '.
+				($postArr['sourceIdentifier']?'"'.$this->cleanInStr($postArr['sourceIdentifier']).'"':'NULL');
 			echo $sql;
 			if(!$this->conn->query($sql)){
-				$this->errorMessage = 'ERROR adding unit: '.$this->conn->error;
+				$this->errorMessage = 'ERROR adding link: '.$this->conn->error;
 				return false;
 			}
 		}
 		return true;
 	}
 
-
-
-
-
-
-
-
-
-
-
+	public function deleteTaxaLink($tlid){
+		if(is_numeric($tlid)){
+			$sql = 'DELETE FROM geographicthesaurus WHERE (tlid = '.$tlid.')';
+			if(!$this->conn->query($sql)){
+				$this->errorMessage = 'ERROR deleting link: '.$this->conn->error;
+				return false;
+			}
+		}
+		return true;
+	}
 
 	//Set children data for taxon higher than species level
 	public function getSppArray($page, $taxaLimit, $pid, $clid){
