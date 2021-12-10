@@ -498,6 +498,78 @@ class TaxonProfile extends Manager {
 		return $this->linkArr;
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public function editTaxaLinks($postArr){
+		if(is_numeric($postArr['tlid'])){
+			if(!$postArr['url']){
+				$this->errorMessage = 'ERROR editing link: URL must have a value';
+				return false;
+			}
+			$sql = 'UPDATE taxalinks '.
+				'SET url = "'.$this->cleanInStr($postArr['url']).'", '.
+				'title = '.($postArr['title']?'"'.$this->cleanInStr($postArr['title']).'"':'NULL').', '.
+				'sourceIdentifier = '.($postArr['sourceIdentifier']?'"'.$this->cleanInStr($postArr['sourceIdentifier']).'"':'NULL').', '.
+				'owner = '.($postArr['owner']?'"'.$this->cleanInStr($postArr['owner']).'"':'NULL').', '.
+				'tid = '.(is_numeric($postArr['tid'])?'"'.$this->cleanInStr($postArr['tid']).'"':'NULL').', '.
+				'WHERE (tlid = '.$postArr['tlid'].')';
+			if(!$this->conn->query($sql)){
+				$this->errorMessage = 'ERROR saving edits: '.$this->conn->error;
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public function addGeoUnit($postArr){
+		if(!$postArr['geoTerm']){
+			$this->errorMessage = 'ERROR adding geoUnit: geographic term must have a value';
+			return false;
+		}
+		else{
+			$sql = 'INSERT INTO geographicthesaurus(geoterm, abbreviation, iso2, iso3, numcode, geoLevel, acceptedID, parentID, notes) '.
+				'VALUES("'.$this->cleanInStr($postArr['geoTerm']).'", '.
+				($postArr['abbreviation']?'"'.$this->cleanInStr($postArr['abbreviation']).'"':'NULL').', '.
+				($postArr['iso2']?'"'.$this->cleanInStr($postArr['iso2']).'"':'NULL').', '.
+				($postArr['iso3']?'"'.$this->cleanInStr($postArr['iso3']).'"':'NULL').', '.
+				(is_numeric($postArr['numCode'])?'"'.$this->cleanInStr($postArr['numCode']).'"':'NULL').', '.
+				(is_numeric($postArr['geoLevel'])?$this->cleanInStr($postArr['geoLevel']):'NULL').', '.
+				(is_numeric($postArr['acceptedID'])?'"'.$this->cleanInStr($postArr['acceptedID']).'"':'NULL').', '.
+				(is_numeric($postArr['parentID'])?'"'.$this->cleanInStr($postArr['parentID']).'"':'NULL').', '.
+				($postArr['notes']?'"'.$this->cleanInStr($postArr['notes']).'"':'NULL').')';
+			echo $sql;
+			if(!$this->conn->query($sql)){
+				$this->errorMessage = 'ERROR adding unit: '.$this->conn->error;
+				return false;
+			}
+		}
+		return true;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 	//Set children data for taxon higher than species level
 	public function getSppArray($page, $taxaLimit, $pid, $clid){
 		if(!$this->sppArray && $this->tid){
