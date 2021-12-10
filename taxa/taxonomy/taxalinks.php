@@ -38,7 +38,7 @@ $linkArr = $taxLinkManager->getLinkArr($tid);
 ?>
 <html>
 <head>
-	<title><?php echo $DEFAULT_TITLE; ?> - Geographic Thesaurus Manager</title>
+	<title><?php echo $DEFAULT_TITLE; ?> - Taxon Links Manager</title>
 	<?php
 	$activateJQuery = true;
 	include_once ($SERVER_ROOT.'/includes/head.php');
@@ -77,134 +77,61 @@ $linkArr = $taxLinkManager->getLinkArr($tid);
 	?>
 	<div class="navpath">
 		<a href="../index.php">Home</a> &gt;&gt;
-		<b><a href="index.php">Geographic Thesaurus Base List</a></b>
+		<b><a href="index.php">Taxon Links</a></b>
 	</div>
 	<div id='innertext'>
 		<?php
 		if($statusStr){
 			echo '<div id="status-div">'.$statusStr.'</div>';
 		}
-		if($geoThesID){
-			$geoUnit = $geoManager->getGeograpicUnit($geoThesID);
-			$rankArr = $geoManager->getGeoRankArr();
+		if($tid){
+			$linkArr = $taxLinkManager->getLinkArr($tid);
+			//$rankArr = $geoManager->getGeoRankArr();
 			?>
-			<div id="updateGeoUnit-div" style="clear:both;margin-bottom:10px;">
+			<div id="updateTaxLink-div" style="clear:both;margin-bottom:10px;">
 				<fieldset id="edit-fieldset">
-					<legend>Edit Geographic<span id="edit-legend"> Unit</span></legend>
+					<legend>Edit Links<span id="edit-legend"></span></legend>
 					<div style="float:right">
 						<span class="editIcon"><a href="#" onclick="toggleEditor()"><img class="editimg" src="../images/edit.png" /></a></span>
 
 					</div>
 					<form name="unitEditForm" action="index.php" method="post">
 						<div class="field-div">
-							<label>GeoUnit Name</label>:
-							<span class="editTerm"><?php echo $geoUnit['geoTerm']; ?></span>
+							<label>Link Title</label>:
+							<span class="editLink"><?php echo $linkArr['title']; ?></span>
 							<span class="editFormElem"><input type="text" name="geoTerm" value="<?php echo $geoUnit['geoTerm'] ?>" style="width:200px;" required /></span>
 						</div>
 						<div class="field-div">
-							<label>Abbreviation</label>:
-							<span class="editTerm"><?php echo $geoUnit['abbreviation']; ?></span>
+							<label>URL</label>:
+							<span class="editTerm"><?php echo $geoUnit['url']; ?></span>
 							<span class="editFormElem"><input type="text" name="abbreviation" value="<?php echo $geoUnit['abbreviation'] ?>" style="width:50px;" /></span>
 						</div>
 						<div class="field-div">
-							<label>ISO2 Code</label>:
-							<span class="editTerm"><?php echo $geoUnit['iso2']; ?></span>
+							<label>Source</label>:
+							<span class="editTerm"><?php echo $geoUnit['sourceIdentifier']; ?></span>
 							<span class="editFormElem"><input type="text" name="iso2" value="<?php echo $geoUnit['iso2'] ?>" style="width:50px;" /></span>
 						</div>
 						<div class="field-div">
-							<label>ISO3 Code</label>:
-							<span class="editTerm"><?php echo $geoUnit['iso3']; ?></span>
-							<span class="editFormElem"><input type="text" name="iso3" value="<?php echo $geoUnit['iso3'] ?>"style="width:50px;" /></span>
-						</div>
-						<div class="field-div">
-							<label>Numeric Code</label>:
-							<span class="editTerm"><?php echo $geoUnit['numCode']; ?></span>
-							<span class="editFormElem"><input type="text" name="numCode" value="<?php echo $geoUnit['numCode'] ?>" style="width:50px;" /></span>
-						</div>
-						<div class="field-div">
-							<label>Geography Rank</label>:
-							<span class="editTerm"><?php echo ($geoUnit['geoLevel']?$rankArr[$geoUnit['geoLevel']].' ('.$geoUnit['geoLevel'].')':''); ?></span>
-							<span class="editFormElem">
-								<select name="geoLevel">
-									<option value="">Select Rank</option>
-									<option value="">----------------------</option>
-									<?php
-									foreach($rankArr as $rankID => $rankValue){
-										echo '<option value="'.$rankID.'" '.($rankID==$geoUnit['geoLevel']?'selected':'').'>'.$rankValue.'</option>';
-									}
-									?>
-								</select>
-							</span>
-						</div>
-						<div class="field-div">
-							<label>Notes</label>:
-							<span class="editTerm"><?php echo $geoUnit['notes']; ?></span>
-							<span class="editFormElem"><input type="text" name="notes" value="<?php echo $geoUnit['notes'] ?>" maxlength="250" style="width:200px;" /></span>
-						</div>
-						<?php
-						if($geoUnit['geoLevel']){
-							if($parentList = $geoManager->getParentGeoTermArr($geoUnit['geoLevel'])){
-								$parentStr = '';
-								if($geoUnit['parentTerm']) $parentStr = '<a href="index.php?geoThesID='.$geoUnit['parentID'].'">'.$geoUnit['parentTerm'].'</a>';
-								?>
-								<div class="field-div">
-									<label>Parent term</label>:
-									<span class="editTerm"><?php echo $parentStr; ?></span>
-									<span class="editFormElem">
-										<select name="parentID">
-											<option value="">Is a Root Term (e.g. no parent)</option>
-											<?php
-											foreach($parentList as $id => $term){
-												echo '<option value="'.$id.'" '.($id==$geoUnit['parentID']?'selected':'').'>'.$term.'</option>';
-											}
-											?>
-										</select>
-									</span>
-								</div>
-								<?php
-							}
-						}
-						$acceptedStr = '';
-						if($geoUnit['acceptedTerm']) $acceptedStr = '<a href="index.php?geoThesID='.$geoUnit['acceptedID'].'">'.$geoUnit['acceptedTerm'].'</a>';
-						?>
-						<div class="field-div">
-							<label>Accepted term</label>:
-							<span class="editTerm"><?php echo $acceptedStr; ?></span>
-							<span class="editFormElem">
-								<select name="acceptedID">
-									<option value="">Term is Accepted</option>
-									<option value="">----------------------</option>
-									<?php
-									$acceptedList = $geoManager->getAcceptedGeoTermArr($geoUnit['geoLevel']);
-									foreach($acceptedList as $id => $term){
-										echo '<option value="'.$id.'" '.($id==$geoUnit['acceptedID']?'selected':'').'>'.$term.'</option>';
-									}
-									?>
-								</select>
-							</span>
+							<label>Owner</label>:
+							<span class="editTerm"><?php echo $geoUnit['owner']; ?></span>
+							<span class="editFormElem"><input type="text" name="iso2" value="<?php echo $geoUnit['iso2'] ?>" style="width:50px;" /></span>
 						</div>
 						<div id="editButton-div" class="button-div">
-							<input name="geoThesID" type="hidden" value="<?php echo $geoThesID; ?>" />
-							<button type="submit" name="submitaction" value="submitGeoEdits">Save Edits</button>
+							<input name="tlid" type="hidden" value="<?php echo $tlid; ?>" />
+							<button type="submit" name="submitaction" value="submitTaxaLinkEditsEdits">Save Edits</button>
 						</div>
 					</form>
 				</fieldset>
 			</div>
 			<div id="unitDel-div">
-				<form name="unitDeleteForm" action="index.php" method="post">
+				<form name="linkDeleteForm" action="index.php" method="post">
 					<fieldset>
-						<legend>Delete Geographic Unit</legend>
+						<legend>Delete Link</legend>
 						<div class="button-div">
 							<input name="parentID" type="hidden" value="<?php echo $geoUnit['parentID']; ?>" />
 							<input name="delGeoThesID" type="hidden"  value="<?php echo $geoThesID; ?>" />
-
-							<!-- We need to decide if we want to allow folks to delete a term and all their children, or only can delete if no children or synonym exists. I'm thinking the later. -->
-
-							<button type="submit" name="submitaction" value="deleteGeoUnits" onclick="return confirm('Are you sure you want to delete this record?')" <?php echo ($geoUnit['childCnt']?'disabled':''); ?>>Delete Geographic Unit</button>
+							<button type="submit" name="submitaction" value="deleteTaxaLink" onclick="return confirm('Are you sure you want to delete this link?')">Delete Link</button>
 						</div>
-						<?php
-						if($geoUnit['childCnt']) echo '<div>* Record can not be deleted until all child records are deleted</div>';
-						?>
 					</fieldset>
 				</form>
 			</div>
@@ -217,39 +144,30 @@ $linkArr = $taxLinkManager->getLinkArr($tid);
 		else{
 			?>
 			<div style="float:right">
-				<span class="editIcon"><a href="#" onclick="$('#addGeoUnit-div').toggle();"><img class="editimg" src="../images/add.png" /></a></span>
+				<span class="editIcon"><a href="#" onclick="$('#addTaxLink-div').toggle();"><img class="editimg" src="../images/add.png" /></a></span>
 			</div>
-			<div id="addGeoUnit-div" style="clear:both;margin-bottom:10px;display:none">
+			<div id="addTaxLink-div" style="clear:both;margin-bottom:10px;display:none">
 				<!--This should also be visible when !$geoThesID -->
 				<fieldset id="new-fieldset">
-					<legend>Add Geographic Unit</legend>
+					<legend>Add Link</legend>
 					<form name="unitAddForm" action="index.php" method="post">
 						<div class="field-div">
-							<label>GeoUnit Name</label>:
+							<label>Title</label>:
 							<span><input type="text" name="geoTerm" style="width:200px;" required /></span>
 						</div>
 						<div class="field-div">
-							<label>Abbreviation</label>:
+							<label>URL</label>:
 							<span><input type="text" name="abbreviation" style="width:50px;" /></span>
 						</div>
 						<div class="field-div">
-							<label>ISO2 Code</label>:
-							<span><input type="text" name="iso2" style="width:50px;" /></span>
-						</div>
-						<div class="field-div">
-							<label>ISO3 Code</label>:
-							<span><input type="text" name="iso3" style="width:50px;" /></span>
-						</div>
-						<div class="field-div">
-							<label>Numeric Code</label>:
-							<span><input type="text" name="numCode" style="width:50px;" /></span>
-						</div>
-						<div class="field-div">
-							<label>Geography Rank</label>:
+							<label>Source Identifier</label>:
 							<span>
 								<select name="geoLevel">
-									<option value="">Select Rank</option>
+									<option value="">Select Identifier</option>
 									<option value="">----------------------</option>
+									
+									
+									
 									<?php
 									$defaultGeoLevel = 0;
 									if($geoArr) $defaultGeoLevel = $geoArr[key($geoArr)]['geoLevel'];
@@ -258,51 +176,30 @@ $linkArr = $taxLinkManager->getLinkArr($tid);
 										echo '<option value="'.$rankID.'" '.($defaultGeoLevel==$rankID?'SELECTED':'').'>'.$rankValue.'</option>';
 									}
 									?>
+									
+									
+									
+									
+									
+									
 								</select>
 							</span>
 						</div>
 						<div class="field-div">
-							<label>Notes</label>:
-							<span><input type="text" name="notes" maxlength="250" style="width:200px;" /></span>
-						</div>
-						<div class="field-div">
-							<label>Parent term</label>:
-							<span>
-								<select name="parentID">
-									<option value="">Select Parent Term</option>
-									<option value="">----------------------</option>
-									<option value="">Is a Root Term (e.g. no parent)</option>
-									<?php
-									$parentList = $geoManager->getParentGeoTermArr();
-									foreach($parentList as $id => $term){
-										echo '<option value="'.$id.'" '.($parentID == $id?'SELECTED':'').'>'.$term.'</option>';
-									}
-									?>
-								</select>
-							</span>
-						</div>
-						<div class="field-div">
-							<label>Accepted term</label>:
-							<span>
-								<select name="acceptedID">
-									<option value="">Select Accepted Term</option>
-									<option value="">----------------------</option>
-									<option value="">Term is Accepted</option>
-									<?php
-									$acceptedList = $geoManager->getAcceptedGeoTermArr();
-									foreach($acceptedList as $id => $term){
-										echo '<option value="'.$id.'">'.$term.'</option>';
-									}
-									?>
-								</select>
-							</span>
+							<label>Owner</label>:
+							<span><input type="text" name="iso3" style="width:50px;" /></span>
 						</div>
 						<div id="addButton-div" class="button-div">
-							<button type="submit" name="submitaction" value="addGeoUnit">Add Unit</button>
+							<button type="submit" name="submitaction" value="addTaxaLink">Add Link</button>
 						</div>
 					</form>
 				</fieldset>
 			</div>
+			
+			
+			
+			
+			
 			<?php
 			if($geoArr){
 				$titleStr = '';
@@ -337,6 +234,11 @@ $linkArr = $taxLinkManager->getLinkArr($tid);
 			if($geoThesID || $parentID) echo '<div class="link-div"><a href="index.php">Show base list</a></div>';
 		}
 		?>
+		
+		
+		
+		
+		
 	</div>
 	<?php
 	include($SERVER_ROOT.'/includes/footer.php');

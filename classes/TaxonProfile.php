@@ -529,7 +529,6 @@ class TaxonProfile extends Manager {
 				'VALUES("'.$this->is_numeric($postArr['tid']).'", '.
 				($postArr['url']?'"'.$this->cleanInStr($postArr['url']).'"':'NULL').', '.
 				($postArr['title']?'"'.$this->cleanInStr($postArr['title']).'"':'NULL').', '.
-				($postArr['sourceIdentifier']?'"'.$this->cleanInStr($postArr['sourceIdentifier']).'"':'NULL').', '.
 				($postArr['sourceIdentifier']?'"'.$this->cleanInStr($postArr['sourceIdentifier']).'"':'NULL');
 			echo $sql;
 			if(!$this->conn->query($sql)){
@@ -542,7 +541,7 @@ class TaxonProfile extends Manager {
 
 	public function deleteTaxaLink($tlid){
 		if(is_numeric($tlid)){
-			$sql = 'DELETE FROM geographicthesaurus WHERE (tlid = '.$tlid.')';
+			$sql = 'DELETE FROM taxalinks WHERE (tlid = '.$tlid.')';
 			if(!$this->conn->query($sql)){
 				$this->errorMessage = 'ERROR deleting link: '.$this->conn->error;
 				return false;
