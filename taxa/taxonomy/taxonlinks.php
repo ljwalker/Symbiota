@@ -3,8 +3,8 @@ include_once ('../config/symbini.php');
 include_once ($SERVER_ROOT . '/classes/TaxonProfile.php');
 header("Content-Type: text/html; charset=".$CHARSET);
 
-$tlid = array_key_exists('tlid', $_REQUEST) ? $_REQUEST['tlid'] : '';
-$tid = array_key_exists('tid', $_REQUEST) ? $_REQUEST['tid'] : '';
+$tid = $_REQUEST["tid"];
+//$tlid = array_key_exists('tlid', $_REQUEST) ? $_REQUEST['tlid'] : '';
 $submitAction = array_key_exists('submitaction', $_POST) ? $_POST['submitaction'] : '';
 
 // Sanitation
@@ -99,22 +99,22 @@ $linkArr = $taxLinkManager->getLinkArr($tid);
 						<div class="field-div">
 							<label>Link Title</label>:
 							<span class="editLink"><?php echo $linkArr['title']; ?></span>
-							<span class="editFormElem"><input type="text" name="geoTerm" value="<?php echo $geoUnit['geoTerm'] ?>" style="width:200px;" required /></span>
+							<span class="editFormElem"><input type="text" name="title" value="<?php echo $linkArr['title'] ?>" style="width:200px;" required /></span>
 						</div>
 						<div class="field-div">
 							<label>URL</label>:
-							<span class="editTerm"><?php echo $geoUnit['url']; ?></span>
-							<span class="editFormElem"><input type="text" name="abbreviation" value="<?php echo $geoUnit['abbreviation'] ?>" style="width:50px;" /></span>
+							<span class="editTerm"><?php echo $linkArr['url']; ?></span>
+							<span class="editFormElem"><input type="text" name="url" value="<?php echo $linkArr['url'] ?>" style="width:50px;" /></span>
 						</div>
 						<div class="field-div">
-							<label>Source</label>:
-							<span class="editTerm"><?php echo $geoUnit['sourceIdentifier']; ?></span>
-							<span class="editFormElem"><input type="text" name="iso2" value="<?php echo $geoUnit['iso2'] ?>" style="width:50px;" /></span>
+							<label>Source Identifier</label>:
+							<span class="editTerm"><?php echo $linkArr['sourceIdentifier']; ?></span>
+							<span class="editFormElem"><input type="text" name="sourceIdentifier" value="<?php echo $linkArr['sourceIdentifier'] ?>" style="width:50px;" /></span>
 						</div>
 						<div class="field-div">
 							<label>Owner</label>:
-							<span class="editTerm"><?php echo $geoUnit['owner']; ?></span>
-							<span class="editFormElem"><input type="text" name="iso2" value="<?php echo $geoUnit['iso2'] ?>" style="width:50px;" /></span>
+							<span class="editTerm"><?php echo $linkArr['owner']; ?></span>
+							<span class="editFormElem"><input type="text" name="owner" value="<?php echo $linkArr['owner'] ?>" style="width:50px;" /></span>
 						</div>
 						<div id="editButton-div" class="button-div">
 							<input name="tlid" type="hidden" value="<?php echo $tlid; ?>" />
@@ -135,6 +135,11 @@ $linkArr = $taxLinkManager->getLinkArr($tid);
 					</fieldset>
 				</form>
 			</div>
+			
+			
+			
+			
+			
 			<?php
 			echo '<div class="link-div">';
 			echo '<div><a href="index.php?'.(isset($geoUnit['parentID'])?'parentID='.$geoUnit['parentID']:'').'">Show '.(isset($geoUnit['geoLevel'])?$rankArr[$geoUnit['geoLevel']]:'').' terms</a></div>';
@@ -143,6 +148,11 @@ $linkArr = $taxLinkManager->getLinkArr($tid);
 		}
 		else{
 			?>
+			
+			
+			
+			
+			
 			<div style="float:right">
 				<span class="editIcon"><a href="#" onclick="$('#addTaxLink-div').toggle();"><img class="editimg" src="../images/add.png" /></a></span>
 			</div>
@@ -153,41 +163,19 @@ $linkArr = $taxLinkManager->getLinkArr($tid);
 					<form name="unitAddForm" action="index.php" method="post">
 						<div class="field-div">
 							<label>Title</label>:
-							<span><input type="text" name="geoTerm" style="width:200px;" required /></span>
+							<span><input type="text" name="title" style="width:200px;" required /></span>
 						</div>
 						<div class="field-div">
 							<label>URL</label>:
-							<span><input type="text" name="abbreviation" style="width:50px;" /></span>
+							<span><input type="text" name="url" style="width:50px;" /></span>
 						</div>
 						<div class="field-div">
 							<label>Source Identifier</label>:
-							<span>
-								<select name="geoLevel">
-									<option value="">Select Identifier</option>
-									<option value="">----------------------</option>
-									
-									
-									
-									<?php
-									$defaultGeoLevel = 0;
-									if($geoArr) $defaultGeoLevel = $geoArr[key($geoArr)]['geoLevel'];
-									$rankArr = $geoManager->getGeoRankArr();
-									foreach($rankArr as $rankID => $rankValue){
-										echo '<option value="'.$rankID.'" '.($defaultGeoLevel==$rankID?'SELECTED':'').'>'.$rankValue.'</option>';
-									}
-									?>
-									
-									
-									
-									
-									
-									
-								</select>
-							</span>
+							<span><input type="text" name="sourceIdentifier" style="width:50px;" /></span>
 						</div>
 						<div class="field-div">
 							<label>Owner</label>:
-							<span><input type="text" name="iso3" style="width:50px;" /></span>
+							<span><input type="text" name="owner" style="width:50px;" /></span>
 						</div>
 						<div id="addButton-div" class="button-div">
 							<button type="submit" name="submitaction" value="addTaxaLink">Add Link</button>
