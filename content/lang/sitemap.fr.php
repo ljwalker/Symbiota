@@ -11,7 +11,11 @@ $LANG['COLLECTIONS'] = 'Collections';
 $LANG['SEARCHENGINE'] = 'Moteur de Recherche';
 $LANG['SEARCH_COLL'] = 'Rechercher des Collections';
 $LANG['LISTOFCOLL'] = 'Liste des Collections Participant au Projet';
+<<<<<<< Updated upstream
 $LANG['COLLSTATS'] = 'Statistiques des Collections';
+=======
+$LANG['COLLSTATS'] = 'Statistiques de Collecte';
+>>>>>>> Stashed changes
 $LANG['EXSICC'] = 'Indice Exsiccati';
 $LANG['DATA_PUBLISHING'] = 'Publication de Données';
 $LANG['COLLECTIONS_RSS'] = "Flux RSS pour les collections d'histoire naturelle et les projets d'observation";
@@ -54,10 +58,17 @@ $LANG['IMAGES'] = 'Images';
 $LANG['SEESYMBDOC'] = 'Voir la documentation Symbiota sur';
 $LANG['IMGSUB'] = 'Soumission d\'Images';
 $LANG['FORANOVERVIEW'] = "pour un aperçu de la façon dont les images sont gérées dans un portail de données Symbiota. Les images de terrain sans
+<<<<<<< Updated upstream
 						informations détaillées sur la localité peuvent être téléchargées à l'aide de la Page de Profil d'Espèce.
 						Les images d'échantillons sont chargées via la Page d'Edition d'&Eacute;chantillons ou via un processus de téléchargement par lots
 						établi par un gestionnaire de portail. Les observations d'images (échantillons d'images) avec des informations détaillées sur la localité peuvent être
 						téléchargées en utilisant le lien ci-dessous. Notez que vous aurez besoin des attributions d'autorisations nécessaires pour utiliser cette fonctionnalité. ";
+=======
+				informations détaillées sur la localité peuvent être téléchargées à l'aide de la Page de Profil d'Espèce.
+				Les images d'échantillons sont chargées via la Page d'Edition d'&Eacute;chantillons ou via un processus de téléchargement par lots
+				établi par un gestionnaire de portail. Les observations d'images (échantillons d'images) avec des informations détaillées sur la localité peuvent être
+				téléchargées en utilisant le lien ci-dessous. Notez que vous aurez besoin des attributions d'autorisations nécessaires pour utiliser cette fonctionnalité.";
+>>>>>>> Stashed changes
 $LANG['BASICFIELD'] = 'Soumettre des Images de Base du Terrain';
 $LANG['IMGOBSER'] = "Module de Soumission d'Images d'Observation";
 $LANG['ADDNEWPROJ'] = 'Ajouter Nouveau Projet';
@@ -66,9 +77,15 @@ $LANG['CLICKEDIT'] = '(cliquez pour modifier)';
 $LANG['NOPROJ'] = "Il n'y a aucun projet dans le système";
 $LANG['NOTEDITPROJ'] = "Vous n'êtes pas autorisé à modifier les Projets";
 $LANG['TAXONPROF'] = 'Page de Profil du Taxon';
+<<<<<<< Updated upstream
 $LANG['THEFOLLOWINGSPEC'] = "Les fonctions d'édition de la Page de Profil d'Espèce suivantes 
 						sont également disponibles pour les éditeurs via un lien d'édition situé 
 						dans le coin supérieur droit de chaque Page de Profil du Taxon.";
+=======
+$LANG['THEFOLLOWINGSPEC'] = "Les fonctions d'édition de la Page de Profil d'Espèce suivantes
+                                                sont également disponibles pour les éditeurs via un lien d'édition situé
+                                                dans le coin supérieur droit de chaque Page de Profil du Taxon.";
+>>>>>>> Stashed changes
 $LANG['NOTAUTHOTAXONPAGE'] = "Vous n'êtes pas encore autorisé à modifier le profil du taxon";
 $LANG['TAXONOMY'] = 'Taxonomie';
 $LANG['TAXTREE'] = "Visualiseur d'Arbre Taxonomique";
@@ -81,6 +98,7 @@ $LANG['EOLLINK'] = 'Gérer Liens avec Encyclopédia of Life';
 $LANG['NOTEDITTAXA'] = "Vous n'êtes pas autorisé à modifier la taxonomie";
 $LANG['CHECKLISTS'] = 'Listes';
 $LANG['TOOLSFORMANAGE'] = "Des outils de gestion des listes sont disponibles à partir de chaque page d'affichage des listes.
+<<<<<<< Updated upstream
 						Symboles d'édition situés dans le coin supérieur droit de la page afficheront les options d'édition 
 						pour cette liste.
 						Vous trouverez ci-dessous une liste des listes que vous êtes autorisé à modifier.";
@@ -95,14 +113,38 @@ $LANG['PARA1'] = "Des outils de gestion des données spécifiques à une collect
 					Une méthode supplémentaire pour accéder à cette page consiste à cliquer sur le nom de la collection dans le moteur de recherche de spécimens.
 					Le symbole d'édition situé en haut à droite de la page Profil de la collection s'ouvrira
 					le volet d'édition et afficher une liste d'options d'édition.";
+=======
+                                                Symboles d'édition situés dans le coin supérieur droit de la page afficheront les options d'édition
+                                                pour cette liste.
+                                                Vous trouverez ci-dessous une liste des listes que vous êtes autorisé à modifier.";
+$LANG['EXSICCATII'] = 'Exsiccati';
+$LANG['ESCMOD'] = "Le Module Exsiccati est activé pour ce portail..
+                                        L'index exsiccati (listé ci-dessous) peut être consulté ou recherché par tout le monde.
+                                        Cependant, pour ajouter ou modifier des titres ou des séries exsiccati,
+                                        l'utilisateur doit être administrateur pour au moins une collection.";
+$LANG['NOTEDITCHECK'] = "Vous n'êtes autorisé à modifier aucune des listes";
+$LANG['PARA1'] = "Des outils de gestion des données spécifiques à une collection particulière sont disponibles via la page de profil de la collection.
+				Cliquer sur un nom de collection dans la liste ci-dessous vous amènera à cette page pour cette collection donnée.
+				Une méthode supplémentaire pour accéder à cette page consiste à cliquer sur le nom de la collection dans le moteur de recherche de spécimens.
+				Le symbole d'édition situé en haut à droite de la page Profil de la collection s'ouvrira
+				le volet d'édition et afficher une liste d'options d'édition.";
+
+>>>>>>> Stashed changes
 $LANG['COLLLIST'] = 'Liste des collections que vous êtes autorisé à modifier';
 $LANG['OBSERV'] = 'Observations';
 $LANG['NOEDITCOLL'] = "Vous n'avez pas d'autorisations d'édition explicites pour une collection particulière";
 $LANG['PARA2'] = "La gestion des données pour les projets d'observation est traitée de manière similaire à ce qui est décrit dans le paragraphe Collections ci-dessus.
+<<<<<<< Updated upstream
 					Une différence est le projet d'observation générale. Ce projet répond à deux objectifs principaux:
 					1) Permet aux utilisateurs enregistrés de soumettre une observation de terrain avec justificatif d'image.
 					2) Permet aux collecteurs de saisir leurs propres données de collecte pour l'impression d'étiquettes et de rendre les données disponibles
 					aux collections obtenant les spécimens physiques par le biais de dons ou d'échanges. Visiter le ";
+=======
+                                        Une différence est le projet d'observation générale. Ce projet répond à deux objectifs principaux:
+                                        1) Permet aux utilisateurs enregistrés de soumettre une observation de terrain avec justificatif d'image.
+                                        2) Permet aux collecteurs de saisir leurs propres données de collecte pour l'impression d'étiquettes et de rendre les données disponibles
+                                        aux collections obtenant les spécimens physiques par le biais de dons ou d'échanges. Visiter le ";
+>>>>>>> Stashed changes
 $LANG['SYMBDOCU'] = 'Documentation Symbiote';
 $LANG['FORMOREINFO'] = "pour plus d'informations sur les capacités de traitement des échantillons. A noter que les projets d'observation ne sont pas activés sur tous les portails de données Symbiota";
 $LANG['OIVS'] = "Soumission de Image d'Observation";
