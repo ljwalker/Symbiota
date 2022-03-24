@@ -1,4 +1,3 @@
-var pauseSubmit = false;
 var imgAssocCleared = false;
 var voucherAssocCleared = false;
 
@@ -318,6 +317,28 @@ function verifyFullFormSciName(){
 	});
 }
 
+function addIdentifierField(clickedObj){
+	$(clickedObj).hide();
+	var identDiv = document.getElementById("identifierBody");
+	var insertHtml = '<div class="divTableRow"><div class="divTableCell"><input name="idkey[]" type="hidden" value="newidentifier" /><input name="idname[]" type="text" value="" onchange="fieldChanged(\'idname\');" autocomplete="off" /></div><div class="divTableCell"><input name="idvalue[]" type="text" value="" onchange="fieldChanged(\'idvalue\');searchOtherCatalogNumbers(this.form);" autocomplete="off" /><a href="#" onclick="addIdentifierField(this);return false"><img src="../../images/plus.png" /></a></div></div>';
+	identDiv.insertAdjacentHTML('beforeend', insertHtml);
+}
+
+function deleteIdentifier(identID, occid){
+	if(identID != ""){
+		//alert("rpc/deleteIdentifier.php?identifierID="+identID+"&occid="+occid);
+		$.ajax({
+			type: "POST",
+			url: "rpc/deleteIdentifier.php",
+			dataType: "json",
+			data: { identifierID: identID, occid: occid }
+		}).done(function( response ) {
+			if(response == 1) $("#idRow-"+identID).remove()
+			//else alert("Error deleting identifier");
+		});
+	}
+}
+
 function localitySecurityCheck(){
 	var tidIn = $( "input[name=tidinterpreted]" ).val();
 	var stateIn = $( "input[name=stateprovince]" ).val();
@@ -377,7 +398,7 @@ function decimalLatitudeChanged(f){
 
 function decimalLongitudeChanged(f){
 	verifyDecimalLongitude(f);
-	verifyCoordinates(f);
+	//verifyCoordinates(f);
 	fieldChanged('decimallongitude');
 }
 
@@ -1215,7 +1236,6 @@ function initDetAutocomplete(f){
 		minLength: 3,
 		change: function(event, ui) {
 			if(f.sciname.value){
-				pauseSubmit = true;
 				verifyDetSciName(f);
 			}
 			else{
