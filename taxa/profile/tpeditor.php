@@ -132,7 +132,6 @@ if($isEditor && $action){
 	<script type="text/javascript" src="../../js/symb/shared.js"></script>
 	<script type="text/javascript" src="../../js/jquery.js"></script>
 	<script type="text/javascript" src="../../js/jquery-ui.js"></script>
-	<script type="text/javascript" src="../../js/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript">
 		var clientRoot = "<?php echo $CLIENT_ROOT; ?>";
 
@@ -165,7 +164,7 @@ if($isEditor && $action){
 			if (occWindow.opener == null) occWindow.opener = self;
 		}
 	</script>
-	<script src="../../js/symb/api.taxonomy.taxasuggest.js" type="text/javascript"></script>
+	<script src="../../js/symb/api.taxonomy.taxasuggest.js?ver=4" type="text/javascript"></script>
 	<style type="text/css">
 		.sectionDiv{ clear:both; }
 		.sectionDiv div{ float:left }
@@ -434,7 +433,7 @@ if($isEditor && $action){
 			}
 			else{
 				echo '<div style="margin:15px">';
-				if($taxon) echo "<i>".ucfirst($taxon)."</i> not found in system. Check spelleing, or contact administrator to request name to be added into system.";
+				if($taxon) echo "<i>".ucfirst($taxon)."</i> not found in system. Check spelling, or contact administrator to request name to be added into system.";
 				echo '</div>';
 			}
 		}

@@ -1,6 +1,6 @@
 /*
  * Do not modify styles within this file
- * Instead, modify styles within the main.css file to override the default styles declared within this file 
+ * Instead, modify styles within the symb/main.css file to override the default styles declared within this file 
 */
 
 body {
@@ -22,8 +22,6 @@ body {
     vertical-align: top;
 }
 
-#header {}
-
 #middleleft {
     width: 160px;
 }
@@ -40,10 +38,6 @@ body {
     width: 15px;
 }
 
-#footer p{ text-align: justify; margin: 20px 200px 0px 200px;  }
-#footer p img{ display:inline-block; width: 100px; margin-top: auto; margin-bottom: auto; vertical-align: middle; }
-#footer p:after{ content:""; display: inline-block; width: 100%; height: 0; }
-
 /*Central div and general components */
 
 #innertext {
@@ -53,26 +47,19 @@ body {
     padding-top: 15px;
 }
 
-#innertext a {}
+#innertext a {
+	color: #215078
+}
 
-#innertext a:hover {}
+#innertext a:hover {
+	color: #337ab7;
+}
 
 form input {
     margin-top: 2px;
 }
 
-a {
-    color: #4a55b9;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #2C405E;
-    text-decoration: underline;
-}
-
 /* Spans that use javascript to add clickable link behaviors */
-
 span[class=link] {
     color: #2C405E;
     text-decoration: none;

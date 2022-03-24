@@ -142,52 +142,34 @@ class TaxonProfile extends Manager {
 	//Images functions
 	public function echoImages($start, $length = 0, $useThumbnail = 1){		//length=0 => means show all images
 		$status = false;
-		if(!isset($this->imageArr)){
-			$this->setTaxaImages();
-		}
+		if(!isset($this->imageArr)) $this->setTaxaImages();
 		if(!$this->imageArr || count($this->imageArr) < $start) return false;
 		$trueLength = ($length&&count($this->imageArr)>$length+$start?$length:count($this->imageArr)-$start);
 		$iArr = array_slice($this->imageArr,$start,$trueLength,true);
 		foreach($iArr as $imgId => $imgObj){
-			if($start == 0 && $trueLength == 1){
-				echo "<div id='centralimage'>";
-			}
-			else{
-				echo "<div class='imgthumb'>";
-			}
-			$imgUrl = $imgObj["url"];
+			if($start == 0 && $trueLength == 1) echo '<div id="centralimage">';
+			else echo '<div class="imgthumb">';
+			$imgUrl = $imgObj['url'];
 			$imgAnchor = '../imagelib/imgdetails.php?imgid='.$imgId;
-			$imgThumbnail = $imgObj["thumbnailurl"];
-			if(array_key_exists("IMAGE_DOMAIN",$GLOBALS)){
+			$imgThumbnail = $imgObj['thumbnailurl'];
+			if(array_key_exists('IMAGE_DOMAIN',$GLOBALS)){
 				//Images with relative paths are on another server
-				if(substr($imgUrl,0,1)=="/") $imgUrl = $GLOBALS["IMAGE_DOMAIN"].$imgUrl;
-				if(substr($imgThumbnail,0,1)=="/") $imgThumbnail = $GLOBALS["IMAGE_DOMAIN"].$imgThumbnail;
+				if(substr($imgUrl,0,1)=="/") $imgUrl = $GLOBALS['IMAGE_DOMAIN'].$imgUrl;
+				if(substr($imgThumbnail,0,1)=="/") $imgThumbnail = $GLOBALS['IMAGE_DOMAIN'].$imgThumbnail;
 			}
-			if($imgObj['occid']){
-				$imgAnchor = '../collections/individual/index.php?occid='.$imgObj['occid'];
-			}
-			if($useThumbnail){
-				if($imgObj['thumbnailurl']){
-					$imgUrl = $imgThumbnail;
-				}
-			}
+			if($imgObj['occid']) $imgAnchor = '../collections/individual/index.php?occid='.$imgObj['occid'];
+			if($useThumbnail) if($imgObj['thumbnailurl']) $imgUrl = $imgThumbnail;
 			echo '<div class="tptnimg"><a href="#" onclick="openPopup(\''.$imgAnchor.'\');return false;">';
 			$titleStr = $imgObj['caption'];
 			if($imgObj['sciname'] != $this->taxonName) $titleStr .= ' (linked from '.$imgObj['sciname'].')';
 			echo '<img src="'.$imgUrl.'" title="'.$titleStr.'" alt="'.$this->taxonName.' image" />';
 			/*
-			 if($length){
-			 echo '<img src="'.$imgUrl.'" title="'.$imgObj['caption'].'" alt="'.$spDisplay.' image" />';
-			 }
-			 else{
-			 //echo '<img class="delayedimg" src="" delayedsrc="'.$imgUrl.'" />';
-			 }
-			 */
+			if($length) echo '<img src="'.$imgUrl.'" title="'.$imgObj['caption'].'" alt="'.$spDisplay.' image" />';
+			//else echo '<img class="delayedimg" src="" delayedsrc="'.$imgUrl.'" />';
+			*/
 			echo '</a></div>';
 			echo '<div class="photographer">';
-			if($imgObj['photographer']){
-				echo $imgObj['photographer'];
-			}
+			if($imgObj['photographer']) echo $imgObj['photographer'];
 			echo '</div>';
 			echo '</div>';
 			$status = true;
@@ -231,8 +213,9 @@ class TaxonProfile extends Manager {
 			$result = $this->conn->query($sql);
 			while($row = $result->fetch_object()){
 				$imgUrl = $row->url;
-				if($imgUrl == 'empty' && $row->originalurl) $imgUrl = $row->originalurl;
-				if($imgUrl == 'empty') continue;
+				if($imgUrl == 'empty') $imgUrl = '';
+				if(!$imgUrl && $row->originalurl) $imgUrl = $row->originalurl;
+				if(!$imgUrl) continue;
 				$this->imageArr[$row->imgid]['url'] = $imgUrl;
 				$this->imageArr[$row->imgid]['thumbnailurl'] = $row->thumbnailurl;
 				if($row->photographerLinked) $this->imageArr[$row->imgid]['photographer'] = $row->photographerLinked;
@@ -496,6 +479,58 @@ class TaxonProfile extends Manager {
 	public function getLinkArr(){
 		if($this->linkArr === false) $this->setLinkArr();
 		return $this->linkArr;
+	}
+
+	public function editTaxaLink($postArr){
+		if(is_numeric($postArr['tlid'])){
+			if(!$postArr['url']){
+				$this->errorMessage = 'ERROR editing link: URL must have a value';
+				return false;
+			}
+			$sql = 'UPDATE taxalinks '.
+				'SET url = "'.$this->cleanInStr($postArr['url']).'", '.
+				'title = '.($postArr['title']?'"'.$this->cleanInStr($postArr['title']).'"':'NULL').', '.
+				'sourceIdentifier = '.($postArr['sourceIdentifier']?'"'.$this->cleanInStr($postArr['sourceIdentifier']).'"':'NULL').', '.
+				'owner = '.($postArr['owner']?'"'.$this->cleanInStr($postArr['owner']).'"':'NULL').', '.
+				'tid = '.(is_numeric($postArr['tid'])?'"'.$this->cleanInStr($postArr['tid']).'"':'NULL').', '.
+				'WHERE (tlid = '.$postArr['tlid'].')';
+			if(!$this->conn->query($sql)){
+				$this->errorMessage = 'ERROR saving edits: '.$this->conn->error;
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public function addTaxaLink($postArr){
+		if(!$postArr['url']){
+			$this->errorMessage = 'ERROR adding link: URL must have a value';
+			return false;
+		}
+		else{
+			$sql = 'INSERT INTO taxalinks(tid, url, title, sourceIdentifier, owner) '.
+				'VALUES("'.$this->is_numeric($postArr['tid']).'", '.
+				($postArr['url']?'"'.$this->cleanInStr($postArr['url']).'"':'NULL').', '.
+				($postArr['title']?'"'.$this->cleanInStr($postArr['title']).'"':'NULL').', '.
+				($postArr['sourceIdentifier']?'"'.$this->cleanInStr($postArr['sourceIdentifier']).'"':'NULL');
+			echo $sql;
+			if(!$this->conn->query($sql)){
+				$this->errorMessage = 'ERROR adding link: '.$this->conn->error;
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public function deleteTaxaLink($tlid){
+		if(is_numeric($tlid)){
+			$sql = 'DELETE FROM taxalinks WHERE (tlid = '.$tlid.')';
+			if(!$this->conn->query($sql)){
+				$this->errorMessage = 'ERROR deleting link: '.$this->conn->error;
+				return false;
+			}
+		}
+		return true;
 	}
 
 	//Set children data for taxon higher than species level
