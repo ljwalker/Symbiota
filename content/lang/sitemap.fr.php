@@ -67,9 +67,9 @@ $LANG['CLICKEDIT'] = '(cliquez pour modifier)';
 $LANG['NOPROJ'] = "Il n'y a aucun projet dans le système";
 $LANG['NOTEDITPROJ'] = "Vous n'êtes pas autorisé à modifier les Projets";
 $LANG['TAXONPROF'] = 'Page de Profil du Taxon';
-$LANG['THEFOLLOWINGSPEC'] = "Les fonctions d'édition de la Page de Profil d'Espèce suivantes 
-						sont également disponibles pour les éditeurs via un lien d'édition situé 
-                        dans le coin supérieur droit de chaque Page de Profil du Taxon.";
+$LANG['THEFOLLOWINGSPEC'] = "Les fonctions d'édition de la Page de Profil d'Espèce suivantes
+						sont également disponibles pour les éditeurs via un lien d'édition situé
+						dans le coin supérieur droit de chaque Page de Profil du Taxon.";
 $LANG['NOTAUTHOTAXONPAGE'] = "Vous n'êtes pas encore autorisé à modifier le profil du taxon";
 $LANG['TAXONOMY'] = 'Taxonomie';
 $LANG['TAXTREE'] = "Visualiseur d'Arbre Taxonomique";
@@ -81,8 +81,8 @@ $LANG['BATCHTAXA'] = "Téléchargement par lots d'un Fichier de Données Taxonom
 $LANG['EOLLINK'] = 'Gérer Liens avec Encyclopédia of Life';
 $LANG['NOTEDITTAXA'] = "Vous n'êtes pas autorisé à modifier la taxonomie";
 $LANG['CHECKLISTS'] = 'Listes';
-$LANG['TOOLSFORMANAGE'] = "Des outils de gestion des listes sont disponibles à partir de chaque page d\'affichage des listes.
-						Symboles d\'édition situés dans le coin supérieur droit de la page afficheront les options d\'édition 
+$LANG['TOOLSFORMANAGE'] = "Des outils de gestion des listes sont disponibles à partir de chaque page d'affichage des listes.
+						Symboles d'édition situés dans le coin supérieur droit de la page afficheront les options d'édition
 						pour cette liste.
 						Vous trouverez ci-dessous une liste des listes que vous êtes autorisé à modifier.";
 $LANG['EXSICCATII'] = 'Exsiccati';
@@ -96,21 +96,6 @@ $LANG['PARA1'] = "Des outils de gestion des données spécifiques à une collect
 					Une méthode supplémentaire pour accéder à cette page consiste à cliquer sur le nom de la collection dans le moteur de recherche de spécimens.
 					Le symbole d'édition situé en haut à droite de la page Profil de la collection s'ouvrira
 					le volet d'édition et afficher une liste d'options d'édition.";
-=======
-                                                Symboles d'édition situés dans le coin supérieur droit de la page afficheront les options d'édition
-                                                pour cette liste.
-                                                Vous trouverez ci-dessous une liste des listes que vous êtes autorisé à modifier.";
-$LANG['EXSICCATII'] = 'Exsiccati';
-$LANG['ESCMOD'] = "Le Module Exsiccati est activé pour ce portail..
-                                        L'index exsiccati (listé ci-dessous) peut être consulté ou recherché par tout le monde.
-                                        Cependant, pour ajouter ou modifier des titres ou des séries exsiccati,
-                                        l'utilisateur doit être administrateur pour au moins une collection.";
-$LANG['NOTEDITCHECK'] = "Vous n'êtes autorisé à modifier aucune des listes";
-$LANG['PARA1'] = "Des outils de gestion des données spécifiques à une collection particulière sont disponibles via la page de profil de la collection.
-				Cliquer sur un nom de collection dans la liste ci-dessous vous amènera à cette page pour cette collection donnée.
-				Une méthode supplémentaire pour accéder à cette page consiste à cliquer sur le nom de la collection dans le moteur de recherche de spécimens.
-				Le symbole d'édition situé en haut à droite de la page Profil de la collection s'ouvrira
-				le volet d'édition et afficher une liste d'options d'édition.";
 $LANG['COLLLIST'] = 'Liste des collections que vous êtes autorisé à modifier';
 $LANG['OBSERV'] = 'Observations';
 $LANG['NOEDITCOLL'] = "Vous n'avez pas d'autorisations d'édition explicites pour une collection particulière";
