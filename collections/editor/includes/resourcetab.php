@@ -80,6 +80,9 @@ $dupClusterArr = $dupManager->getClusterArr($occid);
 			alert("<?php echo $LANG['REL_NOT_DEFINED']; ?>");
 			return false;
 		}
+		else if(f.resourceurl.length > 255){
+			alert("<?php echo $LANG['TOO_LONG']; ?>");
+			return false;
 		return true;
 	}
 
