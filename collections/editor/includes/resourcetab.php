@@ -83,6 +83,7 @@ $dupClusterArr = $dupManager->getClusterArr($occid);
 		else if(f.resourceurl.length > 255){
 			alert("<?php echo $LANG['TOO_LONG']; ?>");
 			return false;
+		}
 		return true;
 	}
 
