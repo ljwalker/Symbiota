@@ -9,6 +9,7 @@ $LANG['NO_RESULTS'] = 'No results returned';
 $LANG['ERROR_UNABLE_RESULTS'] = 'ERROR: Unable to get results';
 $LANG['DEFINE_REL'] = 'Relationship needs to be defined';
 $LANG['REL_NOT_DEFINED'] = 'Related occurrence is not defined!';
+$LANG['TOO_LONG'] = 'URL too long (must be fewer than 255 characters)';
 $LANG['SELECT_CHECKLIST'] = 'Select a checklist to which you want to link the voucher';
 $LANG['VOUCHER_CANNOT_LINK'] = 'Voucher cannot be linked to a checklist until the taxonomic name has been resolved (e.g. name not linked to taxonomic thesaurus';
 $LANG['SURE_UNLINK'] = 'Are you sure you want to unlink the record as a duplicate?';
