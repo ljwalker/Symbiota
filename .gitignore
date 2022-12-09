@@ -1,6 +1,6 @@
 /config/dbconnection.php
 /config/symbini.php
-**/content/lang                                         
+**/content/lang/                                         
 .project
 .settings/org.eclipse.core.resources.prefs
 .settings/org.eclipse.php.ui.prefs
